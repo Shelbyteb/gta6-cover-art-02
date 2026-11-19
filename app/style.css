@@ -1,0 +1,206 @@
+/* Neon Vice Cover Studio — editor chrome. Dark neon UI; the cover itself is
+   drawn on canvas, so this file only styles the tool around it. */
+@font-face {
+  font-family: 'Anton';
+  src: url('./fonts/Anton-Regular.ttf') format('truetype');
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Pacifico';
+  src: url('./fonts/Pacifico-Regular.ttf') format('truetype');
+  font-display: swap;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  background: #12081f;
+  color: #f3eaff;
+  font-family: 'Segoe UI', system-ui, -apple-system, Arial, sans-serif;
+  min-height: 100vh;
+}
+
+.topbar {
+  display: flex;
+  align-items: baseline;
+  gap: 18px;
+  flex-wrap: wrap;
+  padding: 14px 22px;
+  background: linear-gradient(90deg, #2b1055, #7b2fbe 55%, #ff2e88);
+  border-bottom: 3px solid #ffb347;
+}
+.brand {
+  font-family: 'Anton', 'Arial Black', sans-serif;
+  font-size: 26px;
+  letter-spacing: 1px;
+  color: #fff;
+  text-transform: uppercase;
+}
+.brand em { font-style: normal; color: #ffd76a; }
+.brand-mark {
+  display: inline-block;
+  background: #ffb347;
+  color: #2b1055;
+  border-radius: 6px;
+  padding: 2px 8px;
+  margin-right: 6px;
+}
+.tagline { margin: 0; color: #ffe9f5; font-size: 14px; }
+
+.app {
+  display: grid;
+  grid-template-columns: 380px minmax(0, 1fr);
+  gap: 22px;
+  padding: 20px 22px;
+  align-items: start;
+}
+.controls h1 {
+  font-family: 'Anton', 'Arial Black', sans-serif;
+  font-size: 24px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin: 4px 0 6px;
+  color: #ffd76a;
+}
+.hint { color: #c9b8e8; font-size: 13px; margin: 4px 0 10px; }
+
+fieldset {
+  border: 1px solid #4c2a7a;
+  border-radius: 10px;
+  padding: 12px;
+  margin: 0 0 14px;
+  background: rgba(255, 255, 255, 0.03);
+}
+legend {
+  font-weight: 700;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #f0abfc;
+  padding: 0 6px;
+}
+.readout { color: #c9b8e8; text-transform: none; letter-spacing: 0; font-weight: 400; }
+
+.picks { display: flex; flex-wrap: wrap; gap: 8px; }
+.pick, .slot, button {
+  font: inherit;
+  color: #f3eaff;
+  background: #241238;
+  border: 1px solid #6b3fa0;
+  border-radius: 8px;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+.pick:hover, .slot:hover, button:hover { border-color: #ff5ef1; }
+.pick.active, .slot.active { background: #ff2e88; border-color: #ffb347; color: #fff; }
+
+.slots { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 10px; }
+.slot { display: flex; gap: 8px; align-items: center; text-align: left; padding: 8px 10px; }
+.slot-num {
+  background: #ffb347;
+  color: #2b1055;
+  font-weight: 800;
+  border-radius: 50%;
+  width: 24px; height: 24px;
+  display: inline-flex; align-items: center; justify-content: center;
+  flex: none;
+}
+.slot-label { font-size: 13px; }
+
+.row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 10px; }
+.file-btn {
+  display: inline-block;
+  background: #ff2e88;
+  border: 1px solid #ffb347;
+  border-radius: 8px;
+  padding: 8px 12px;
+  cursor: pointer;
+  color: #fff;
+}
+.file-btn input { display: none; }
+
+label { display: block; margin-bottom: 8px; font-size: 14px; }
+label input[type="text"] {
+  display: block;
+  width: 100%;
+  margin-top: 4px;
+  padding: 8px 10px;
+  font: inherit;
+  color: #fff;
+  background: #1a0b2e;
+  border: 1px solid #6b3fa0;
+  border-radius: 8px;
+}
+label input[type="text"]:focus { outline: 2px solid #ff5ef1; border-color: #ff5ef1; }
+
+.slider { display: grid; grid-template-columns: 56px 1fr 52px; align-items: center; gap: 8px; }
+.slider input[type="range"] { width: 100%; accent-color: #ff2e88; }
+.check { display: inline-flex; align-items: center; gap: 6px; margin: 0 14px 6px 0; }
+.check input { accent-color: #ff2e88; width: 16px; height: 16px; }
+
+.export {
+  display: block;
+  width: 100%;
+  padding: 14px;
+  font-family: 'Anton', 'Arial Black', sans-serif;
+  font-size: 20px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  background: linear-gradient(90deg, #ff8a3d, #ff2e88);
+  border: none;
+  border-radius: 10px;
+  color: #fff;
+  cursor: pointer;
+}
+.export:hover { filter: brightness(1.1); }
+#status { color: #a5f3fc; font-size: 13px; min-height: 18px; }
+
+.preview { position: sticky; top: 16px; }
+.preview-wrap {
+  background: #0a0514;
+  border: 1px solid #4c2a7a;
+  border-radius: 12px;
+  padding: 14px;
+  text-align: center;
+}
+.preview-wrap.drop { border-color: #ff5ef1; box-shadow: 0 0 0 3px rgba(255, 94, 241, 0.35); }
+#cover {
+  max-width: 100%;
+  max-height: calc(100vh - 190px);
+  width: auto;
+  height: auto;
+  border-radius: 6px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
+  cursor: crosshair;
+  touch-action: none;
+}
+.drop-hint { color: #8d7bb0; font-size: 12px; margin: 8px 0 0; }
+.caption-note { color: #c9b8e8; font-size: 13px; text-align: center; }
+
+.foot { padding: 0 22px 22px; color: #8d7bb0; font-size: 12px; max-width: 1100px; }
+
+/* Screenshot scenes: the cover alone, full frame, at its export size. */
+body.shot-cover { background: #000; overflow: hidden; }
+body.shot-cover .topbar,
+body.shot-cover .controls,
+body.shot-cover .foot,
+body.shot-cover .drop-hint,
+body.shot-cover .caption-note { display: none; }
+body.shot-cover .app { display: block; padding: 0; }
+body.shot-cover .preview { position: static; }
+body.shot-cover .preview-wrap { border: 0; border-radius: 0; padding: 0; background: #000; }
+body.shot-cover #cover {
+  max-width: 100vw;
+  max-height: 100vh;
+  width: 100vw;
+  height: 100vh;
+  object-fit: contain;
+  border-radius: 0;
+  box-shadow: none;
+  background: #000;
+}
+
+@media (max-width: 900px) {
+  .app { grid-template-columns: 1fr; }
+  .preview { position: static; }
+}
